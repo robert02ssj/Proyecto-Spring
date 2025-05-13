@@ -1,0 +1,78 @@
+<!-- filepath: src/main/webapp/WEB-INF/jsp/index.jsp -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tienda Anime</title>
+    <style>
+        /* Estilos básicos para ejemplo */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .navbar { background: #222; color: #fff; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .navbar .logo { font-size: 1.5em; font-weight: bold; }
+        .navbar .search { flex: 1; margin: 0 20px; }
+        .navbar input[type="text"] { width: 60%; padding: 5px; }
+        .navbar .actions { display: flex; gap: 15px; }
+        .banner { background: #f5f5f5; padding: 20px; text-align: center; }
+        .productos { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 20px 0; }
+        .producto { border: 1px solid #ddd; padding: 10px; width: 200px; background: #fff; }
+        .footer { background: #222; color: #fff; padding: 20px; text-align: center; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <!-- Menú superior -->
+    <div class="navbar">
+        <div class="logo">
+            <img th:src="@{/img/logo.png}" alt="Logo" style="height:30px;vertical-align:middle;">
+            Tienda Anime
+        </div>
+        <div class="search">
+            <form th:action="@{/buscar}" method="get">
+                <input type="text" name="q" placeholder="Buscar productos...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <div class="actions">
+    <span th:if="${nombreUsuario != null}" style="color:#fff;">
+        ¡Hola, <span th:text="${nombreUsuario}">usuario</span>!
+        <a th:href="@{/logout}" style="color:#fff; margin-left:10px;">Cerrar sesión</a>
+    </span>
+    <span th:if="${nombreUsuario == null}">
+        <a th:href="@{/login}" style="color:#fff;">Login/Registro</a>
+    </span>
+    <a th:href="@{/carrito}" style="color:#fff;">🛒 Carrito</a>
+</div>
+    </div>
+
+    <!-- Banner productos más visitados -->
+    <div class="banner">
+        <h2>Productos más visitados</h2>
+        <div class="productos">
+            <div class="producto" th:each="producto : ${productos}">
+                <img th:src="${producto.imagenUrl}" th:alt="${producto.nombre}" style="width:100%;height:120px;object-fit:cover;">
+                <h3 th:text="${producto.nombre}">Nombre</h3>
+                <p th:text="${producto.precio} + ' €'">0.00 €</p>
+                <a th:href="@{'/producto/' + ${producto.id_producto}}">Ver detalle</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <form th:action="@{/suscribirse}" method="post">
+            <label>Suscríbete a nuestras noticias:</label>
+            <input type="email" name="email" placeholder="Tu correo">
+            <button type="submit">Suscribirme</button>
+        </form>
+        <div style="margin-top:10px;">
+            <a href="#" style="color:#fff;margin:0 10px;">Instagram</a>
+            <a href="#" style="color:#fff;margin:0 10px;">Twitter</a>
+            <a href="#" style="color:#fff;margin:0 10px;">Facebook</a>
+        </div>
+        <div style="margin-top:10px;">
+            <a th:href="@{/cuenta}" style="color:#fff;margin:0 10px;">Tu cuenta</a>
+            <a th:href="@{/contacto}" style="color:#fff;margin:0 10px;">Contáctanos</a>
+            <a th:href="@{/asistencia}" style="color:#fff;margin:0 10px;">Asistencia al cliente</a>
+            <a th:href="@{/sobre-nosotros}" style="color:#fff;margin:0 10px;">Sobre nosotros</a>
+        </div>
+    </div>
+</body>
+</html>

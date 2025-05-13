@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Carrito de compras</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: center; }
+        th { background: #222; color: #fff; }
+        .total { font-size: 1.2em; font-weight: bold; text-align: right; }
+        .acciones { text-align: center; }
+        .boton { background: #0070f3; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Carrito de compras</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${carrito}">
+                    <td th:text="${item.producto.nombre}">Nombre</td>
+                    <td th:text="${item.producto.precio} + ' €'">0.00 €</td>
+                    <td th:text="${item.cantidad}">1</td>
+                    <td th:text="${#numbers.formatDecimal(item.producto.precio * item.cantidad, 1, 'POINT', 2, 'NONE')} + ' €'">0.00 €</td>
+                    <td class="acciones">
+                        <form th:action="@{/carrito/eliminar}" method="post" style="display:inline;">
+                            <input type="hidden" name="id_producto" th:value="${item.producto.id_producto}">
+                            <button type="submit" class="boton">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="total">
+            Total: <span th:text="${total} + ' €'">0.00 €</span>
+        </div>
+        <form th:action="@{/pedido/confirmar}" method="post" style="text-align:right;">
+            <button type="submit" class="boton">Confirmar pedido</button>
+        </form>
+        <a th:href="@{/}" style="display:block;margin-top:20px;">&larr; Seguir comprando</a>
+    </div>
+</body>
+</html>
