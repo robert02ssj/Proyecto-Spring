@@ -2,6 +2,7 @@ package com.ssj.tiendanime.service;
 
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import com.ssj.tiendanime.repository.PedidoRepository;
 import com.ssj.tiendanime.repository.DetallePedidoRepository;
@@ -64,6 +65,8 @@ public class CarritoService {
 
     public void confirmarCarrito(Pedido carrito) {
         carrito.setEstado("pendiente");
+        carrito.setFechaCreacion(LocalDateTime.now()); // <-- Añade esta línea
+
         // Calcula el total
         BigDecimal total = detallePedidoRepository.findByPedido(carrito).stream()
     .filter(d -> d.getPrecioUnitario() != null && d.getCantidad() != null)

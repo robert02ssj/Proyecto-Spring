@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mi Cuenta</title>
+    <link rel="stylesheet" th:href="@{/css/cuenta.css}">
+</head>
+<body>
+    <div class="container">
+        <h2>Mi Cuenta</h2>
+        <div class="perfil-info">
+            <label>Nombre:</label>
+            <span th:text="${usuario.nombre}">Nombre Usuario</span><br><br>
+            <label>Email:</label>
+            <span th:text="${usuario.email}">usuario@email.com</span><br><br>
+            <label>Fecha de registro:</label>
+            <span th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy HH:mm')}">01/01/2024</span>
+        </div>
+        <div class="perfil-actions">
+            <a th:href="@{/cuenta/editar}">Editar perfil</a>
+            <a th:href="@{/cuenta/cambiar-password}">Cambiar contraseña</a>
+            <a th:href="@{/}">Volver a la tienda</a>
+        </div>
+    </div>
+</body>
+</html>

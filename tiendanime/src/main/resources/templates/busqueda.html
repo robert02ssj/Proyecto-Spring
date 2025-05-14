@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resultados de búsqueda</title>
+    <link rel="stylesheet" th:href="@{/css/busqueda.css}">
+</head>
+<body>
+    <div class="container">
+        <h2>Resultados para "<span th:text="${busqueda}"></span>"</h2>
+        <div class="productos">
+            <div class="producto" th:each="producto : ${productos}">
+                <img th:src="@{'/img/' + ${producto.imagenUrl}}" th:alt="${producto.nombre}" style="width:100%;height:120px;object-fit:contain;">
+                <h3 th:text="${producto.nombre}">Nombre</h3>
+                <p th:text="${producto.precio} + ' €'">0.00 €</p>
+                <a th:href="@{'/producto/' + ${producto.id_producto}}">Ver detalle</a>
+            </div>
+        </div>
+        <div th:if="${#lists.isEmpty(productos)}" style="text-align:center;margin-top:30px;">
+            <p>No se encontraron productos para tu búsqueda.</p>
+        </div>
+        <div style="text-align:center;margin-top:30px;">
+            <a th:href="@{/}" style="color:#232946; text-decoration:underline; font-size:1.1em;">
+                &larr; Volver a la tienda
+            </a>
+        </div>
+    </div>
+</body>
+</html>

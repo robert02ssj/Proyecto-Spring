@@ -2,6 +2,9 @@ package com.ssj.tiendanime.controller;
 
 import com.ssj.tiendanime.model.Usuario;
 import com.ssj.tiendanime.repository.UsuarioRepository;
+
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -33,6 +36,8 @@ public class RegistroController {
         usuario.setNombre(nombre);
         usuario.setEmail(email);
         usuario.setContraseña(passwordEncoder.encode(contraseña));
+        usuario.setFechaRegistro(LocalDateTime.now());
+
         usuarioRepository.save(usuario);
         return "redirect:/login?registroExitoso";
     }

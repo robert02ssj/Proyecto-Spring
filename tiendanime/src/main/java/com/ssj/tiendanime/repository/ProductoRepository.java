@@ -7,4 +7,5 @@ import java.util.List;
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     // Devuelve los 5 productos con más visitas
     List<Producto> findTop5ByOrderByVisitasDesc();
+    List<Producto> findByNombreContainingIgnoreCaseOrDescripcionContainingIgnoreCase(String nombre, String descripcion);
 }

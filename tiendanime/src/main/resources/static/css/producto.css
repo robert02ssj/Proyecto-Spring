@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #232946;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.producto-detalle {
+    display: flex;
+    gap: 30px;
+}
+
+.producto-detalle img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.info {
+    flex: 1;
+}
+
+.info h2 {
+    margin-top: 0;
+}
+
+.precio {
+    color: #0070f3;
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.boton-carrito {
+    background: #0070f3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}

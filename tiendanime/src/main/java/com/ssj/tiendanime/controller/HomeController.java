@@ -23,6 +23,9 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model, Principal principal) {
         model.addAttribute("productos", productoService.obtenerProductosMasVisitados());
+        model.addAttribute("aleatorios", productoService.obtenerProductosAleatorios(50)); // <-- Añade esta línea
+
+        
         if (principal != null) {
             Usuario usuario = usuarioRepository.findByEmail(principal.getName());
             if (usuario != null) {

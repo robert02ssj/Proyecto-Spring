@@ -11,4 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface DetallePedidoRepository extends JpaRepository<DetallePedido, Integer> {
  List<DetallePedido> findByPedido(Pedido pedido);
     DetallePedido findByPedidoAndProducto(Pedido pedido, Producto producto);
+    
 }

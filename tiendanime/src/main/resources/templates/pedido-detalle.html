@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle del pedido</title>
+    <link rel="stylesheet" th:href="@{/css/pedidos.css}">
+</head>
+<body>
+    <div class="container">
+        <h2>Detalle del pedido #<span th:text="${pedido.id_pedido}">1</span></h2>
+        <p><b>Fecha:</b> <span th:text="${#temporals.format(pedido.fechaCreacion, 'dd/MM/yyyy HH:mm')}">01/01/2024</span></p>
+        <p><b>Estado:</b> <span th:text="${pedido.estado}">Pendiente</span></p>
+        <p><b>Total:</b> <span th:text="${pedido.total} + ' €'">0.00 €</span></p>
+        <hr>
+        <h3>Productos</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="detalle : ${detalles}">
+                    <td>
+                        <img th:src="@{'/img/' + ${detalle.producto.imagenUrl}}" th:alt="${detalle.producto.nombre}" style="width:60px; height:60px; object-fit:contain; border-radius:6px; background:#fff;">
+                    </td>
+                    <td th:text="${detalle.producto.nombre}">Nombre</td>
+                    <td th:text="${detalle.producto.precio} + ' €'">0.00 €</td>
+                    <td th:text="${detalle.cantidad}">1</td>
+                    <td th:text="${#numbers.formatDecimal(detalle.producto.precio * detalle.cantidad, 1, 'NONE', 2, 'POINT')} + ' €'">0.00 €</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align:center; margin-top:30px;">
+            <a th:href="@{/pedidos}" style="color:#232946; text-decoration:underline; font-size:1.1em;">
+                &larr; Volver a mis pedidos
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mis pedidos</title>
+    <link rel="stylesheet" th:href="@{/css/pedidos.css}">
+</head>
+<body>
+    <h2>Mis pedidos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Pedido</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Total</th>
+                <th>Ver detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pedido : ${pedidos}">
+                <td th:text="${pedido.id_pedido}">1</td>
+                <td th:text="${#temporals.format(pedido.fechaCreacion, 'dd/MM/yyyy HH:mm')}">01/01/2024</td>
+                <td th:text="${pedido.estado}">Pendiente</td>
+                <td th:text="${pedido.total} + ' €'">0.00 €</td>
+                <td><a th:href="@{'/pedidos/' + ${pedido.id_pedido}}">Ver</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="text-align:center; margin-top:30px;">
+        <a th:href="@{/}" style="color:#232946; text-decoration:underline; font-size:1.1em;">
+            &larr; Volver a la tienda
+        </a>
+    </div>
+</body>
+</html>
