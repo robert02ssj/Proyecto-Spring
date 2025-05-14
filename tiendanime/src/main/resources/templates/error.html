@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error</title>
+    <link rel="stylesheet" th:href="@{/css/error.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>¡Vaya!</h1>
+        <h2>Ha ocurrido un error</h2>
+        <p th:text="${mensaje != null ? mensaje : 'Lo sentimos, no se pudo encontrar la página o se ha producido un error inesperado.'}">
+            Lo sentimos, no se pudo encontrar la página o se ha producido un error inesperado.
+        </p>
+        <div style="text-align:center; margin-top:30px;">
+            <a th:href="@{/}" class="btn-volver">Volver a la tienda</a>
+        </div>
+    </div>
+</body>
+</html>

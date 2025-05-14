@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" th:href="@{/css/cuenta.css}">
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Perfil</h2>
+        <form th:action="@{/cuenta/editar}" th:object="${usuario}" method="post">
+            <label>Nombre:<br>
+                <input type="text" th:field="*{nombre}" required>
+            </label><br><br>
+            <label>Email:<br>
+                <input type="email" th:field="*{email}" required readonly>
+            </label><br><br>
+            <button type="submit">Guardar cambios</button>
+        </form>
+        <div style="margin-top:20px;">
+            <a th:href="@{/cuenta}">&larr; Volver a mi cuenta</a>
+        </div>
+    </div>
+</body>
+</html>
