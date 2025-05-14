@@ -1,15 +1,9 @@
 package com.ssj.tiendanime.controller;
-
-import com.ssj.tiendanime.model.ItemCarrito;
-import com.ssj.tiendanime.model.Producto;
-import com.ssj.tiendanime.service.ProductoService;
 import com.ssj.tiendanime.model.Usuario;
 import com.ssj.tiendanime.model.Pedido;
 import com.ssj.tiendanime.model.DetallePedido;
 import com.ssj.tiendanime.repository.UsuarioRepository;
 import com.ssj.tiendanime.service.CarritoService;
-
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,17 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class CarritoController {
-    private final ProductoService productoService;
     private final CarritoService carritoService;
     private final UsuarioRepository usuarioRepository;
 
-    public CarritoController(ProductoService productoService, CarritoService carritoService, UsuarioRepository usuarioRepository) {
-        this.productoService = productoService;
+    public CarritoController(CarritoService carritoService, UsuarioRepository usuarioRepository) {
         this.carritoService = carritoService;
         this.usuarioRepository = usuarioRepository;
     }
