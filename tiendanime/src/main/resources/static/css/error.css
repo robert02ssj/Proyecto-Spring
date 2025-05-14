@@ -6,6 +6,7 @@ body {
     padding: 0;
 }
 
+
 .container {
     max-width: 500px;
     margin: 80px auto;
@@ -41,4 +42,10 @@ h2 {
 .btn-volver:hover {
     background: #eebbc3;
     color: #232946;
+}
+
+.tenor-gif-embed{
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
 }
