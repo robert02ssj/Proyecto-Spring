@@ -1,50 +1,178 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #232946;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #e0e7ff 0%, #eebbc3 100%);
+    color: #232946;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 800px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #ccc;
+    max-width: 900px;
+    margin: 56px auto 32px auto;
+    background: rgba(255,255,255,0.82);
+    padding: 44px 38px 36px 38px;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px #23294633;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 1.1s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 
 .producto-detalle {
     display: flex;
-    gap: 30px;
+    gap: 48px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .producto-detalle img {
-    width: 300px;
-    height: 300px;
+    width: 340px;
+    height: 340px;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 18px;
     background: #fff;
+    box-shadow: 0 8px 32px #eebbc344;
+    transition: box-shadow 0.25s, transform 0.22s;
+    border: 3px solid #eebbc3;
+    animation: floatImg 2.5s infinite ease-in-out alternate;
+}
+@keyframes floatImg {
+    0% { transform: translateY(0);}
+    100% { transform: translateY(-10px);}
+}
+.producto-detalle img:hover {
+    box-shadow: 0 16px 48px #eebbc388;
+    transform: scale(1.05);
 }
 
 .info {
     flex: 1;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
 }
 
 .info h2 {
     margin-top: 0;
+    font-size: 2.2em;
+    font-weight: 900;
+    color: #232946;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 8px #eebbc344;
+    margin-bottom: 8px;
 }
 
 .precio {
-    color: #0070f3;
-    font-size: 1.5em;
-    margin: 10px 0;
+    color: #e6683c;
+    font-size: 1.7em;
+    margin: 10px 0 18px 0;
+    font-weight: bold;
+    text-shadow: 0 2px 8px #eebbc344;
+    letter-spacing: 1px;
+}
+
+.info p {
+    font-size: 1.13em;
+    margin: 0 0 8px 0;
+    color: #232946;
+    opacity: 0.92;
+}
+
+form {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+input[type="number"] {
+    width: 70px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1.5px solid #bfc9d1;
+    font-size: 1.08em;
+    background: #f7f8fa;
+    margin-left: 6px;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+input[type="number"]:focus {
+    border: 1.5px solid #eebbc3;
+    outline: none;
+    box-shadow: 0 2px 12px #eebbc388;
 }
 
 .boton-carrito {
-    background: #0070f3;
+    background: linear-gradient(90deg, #232946 0%, #404a7f 100%);
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 1em;
+    padding: 12px 32px;
+    border-radius: 10px;
+    font-size: 1.13em;
+    font-weight: bold;
     cursor: pointer;
+    margin-left: 10px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    box-shadow: 0 2px 8px #23294622;
+    letter-spacing: 0.5px;
+}
+.boton-carrito:hover {
+    background: #eebbc3;
+    color: #232946;
+    box-shadow: 0 4px 24px #eebbc388;
+    transform: scale(1.04);
+}
+
+a {
+    color: #232946;
+    text-decoration: underline;
+    font-size: 1.13em;
+    transition: color 0.2s;
+    display: inline-block;
+    margin-top: 18px;
+}
+a:hover {
+    color: #eebbc3;
+    text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+    .container {
+        padding: 18px 4vw;
+    }
+    .producto-detalle {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    .producto-detalle img {
+        width: 90vw;
+        max-width: 340px;
+        height: auto;
+    }
+    .info {
+        width: 100%;
+        min-width: unset;
+        align-items: center;
+        text-align: center;
+    }
+    .info h2 {
+        font-size: 1.5em;
+    }
+    .precio {
+        font-size: 1.2em;
+    }
+    .boton-carrito {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
 }

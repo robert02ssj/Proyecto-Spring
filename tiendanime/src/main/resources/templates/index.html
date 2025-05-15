@@ -17,6 +17,7 @@
             <img th:src="@{/img/logo.png}" alt="Logo" style="height:80px;vertical-align:middle;">
             Tienda Anime
         </div>
+
         <div class="search">
             <form th:action="@{/buscar}" method="get">
                 <input type="text" name="q" placeholder="Buscar productos...">
@@ -30,7 +31,8 @@
                 <a th:href="@{/pedidos}" style="color:#fff; margin-left:10px;">Mis pedidos</a>
             </span>
             <span th:if="${nombreUsuario == null}">
-                <a th:href="@{/login}" style="color:#fff;">Login/Registro</a>
+                <a th:href="@{/login}" style="color:#fff;">Iniciar Sesión</a>
+                
             </span>
             <a th:href="@{/carrito}" style="color:#fff;">🛒 Carrito</a>
         </div>
@@ -50,23 +52,25 @@
         </div>
     </div>
 
+
     <!-- Descubre más productos -->
-<!-- ...existing code... -->
-<div class="banner" style="margin-top:40px;">
-    <h2>Descubre más productos</h2>
-    <div class="carrusel-container">
-        <button class="carrusel-btn" onclick="moverCarrusel(-1)">&#8592;</button>
-        <div class="carrusel-productos" id="carrusel-productos">
-            <div class="producto" th:each="producto : ${aleatorios}">
-                <img th:src="@{'/img/' + ${producto.imagenUrl}}" th:alt="${producto.nombre}" style="width:100%;height:120px;object-fit:contain;">
-                <h3 th:text="${producto.nombre}">Nombre</h3>
-                <p th:text="${producto.precio} + ' €'">0.00 €</p>
-                <a th:href="@{'/producto/' + ${producto.id_producto}}">Ver detalle</a>
+
+    <div class="banner" style="margin-top:40px;">
+        <h2>Descubre más productos</h2>
+        <div class="carrusel-container">
+            <button class="carrusel-btn" onclick="moverCarrusel(-1)">&#8592;</button>
+            <div class="carrusel-productos" id="carrusel-productos">
+                <div class="producto" th:each="producto : ${aleatorios}">
+                    <img th:src="@{'/img/' + ${producto.imagenUrl}}" th:alt="${producto.nombre}"
+                        style="width:100%;height:120px;object-fit:contain;">
+                    <h3 th:text="${producto.nombre}">Nombre</h3>
+                    <p th:text="${producto.precio} + ' €'">0.00 €</p>
+                    <a th:href="@{'/producto/' + ${producto.id_producto}}">Ver detalle</a>
+                </div>
             </div>
+            <button class="carrusel-btn" onclick="moverCarrusel(1)">&#8594;</button>
         </div>
-        <button class="carrusel-btn" onclick="moverCarrusel(1)">&#8594;</button>
     </div>
-</div>
     <!-- Footer -->
     <div class="footer">
         <form th:action="@{/suscribirse}" method="post">
@@ -123,23 +127,23 @@
     </div>
 
     <script>
-let posicion = 0;
-const productosVisibles = 4; // Cambia según el espacio disponible
-const carrusel = document.getElementById('carrusel-productos');
-const totalProductos = carrusel ? carrusel.children.length : 0;
+        let posicion = 0;
+        const productosVisibles = 4; // Cambia según el espacio disponible
+        const carrusel = document.getElementById('carrusel-productos');
+        const totalProductos = carrusel ? carrusel.children.length : 0;
 
-function moverCarrusel(direccion) {
-    if (!carrusel) return;
-    posicion += direccion;
-    if (posicion < 0) posicion = 0;
-    if (posicion > totalProductos - productosVisibles) posicion = totalProductos - productosVisibles;
-    if (posicion < 0) posicion = 0;
-    carrusel.scrollTo({
-        left: posicion * 240, // 220px ancho + 20px margen
-        behavior: 'smooth'
-    });
-}
-</script>
+        function moverCarrusel(direccion) {
+            if (!carrusel) return;
+            posicion += direccion;
+            if (posicion < 0) posicion = 0;
+            if (posicion > totalProductos - productosVisibles) posicion = totalProductos - productosVisibles;
+            if (posicion < 0) posicion = 0;
+            carrusel.scrollTo({
+                left: posicion * 240, // 220px ancho + 20px margen
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 
 </html>

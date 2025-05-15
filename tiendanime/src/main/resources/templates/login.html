@@ -3,9 +3,10 @@
 <head>
     <title>Login - Tienda Anime</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <meta charset="UTF-8">
 </head>
 <body>
-    <div class="login-container">
+    <div class="form-container">
         <h2>Iniciar sesión</h2>
         <form th:action="@{/login}" method="post">
             <label>Email:</label>
@@ -14,7 +15,7 @@
             <input type="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Entrar</button>
         </form>
-        <div class="register-link">
+        <div class="link-extra">
             ¿No tienes cuenta? <a th:href="@{/registro}">Regístrate aquí</a>
         </div>
     </div>
