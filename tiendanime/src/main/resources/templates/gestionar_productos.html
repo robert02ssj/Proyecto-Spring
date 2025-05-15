@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar productos</title>
+    <link rel="stylesheet" th:href="@{/css/gestionar_productos.css}">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="admin-container">
+        <h2>Gestión de productos</h2>
+        <a th:href="@{/admin/productos/nuevo}" class="boton-nuevo">+ Nuevo producto</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.id_producto}">1</td>
+                    <td th:text="${producto.nombre}">Nombre</td>
+                    <td th:text="${producto.precio} + ' €'">0.00 €</td>
+                    <td th:text="${producto.stock}">0</td>
+                    <td>
+                        <a th:href="@{'/admin/productos/editar/' + ${producto.id_producto}}" class="boton-accion editar">Editar</a>
+                        <form th:action="@{'/admin/productos/eliminar/' + ${producto.id_producto}}" method="post" style="display:inline;">
+                            <button type="submit" class="boton-accion eliminar">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/admin}" class="volver-panel">&larr; Volver al panel</a>
+    </div>
+</body>
+</html>

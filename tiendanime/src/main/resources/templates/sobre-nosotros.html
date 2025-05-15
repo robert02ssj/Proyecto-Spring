@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sobre nosotros - Tienda Anime</title>
+    <link rel="stylesheet" th:href="@{/css/sobre-nosotros.css}">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="sobre-container">
+        <h2>Sobre nosotros</h2>
+        <p class="intro">
+            ¡Bienvenido a <b>Tienda Anime</b>! Somos un equipo apasionado por el mundo del anime, el manga y la cultura japonesa. 
+            Nuestra misión es acercar los mejores productos y novedades a todos los fans, con la mejor atención y confianza.
+        </p>
+        <div class="equipo">
+            <h3>Nuestro equipo</h3>
+            <ul>
+                <li><b>Roberto</b> – Fundador y CEO</li>
+                <li><b>Marina</b> – Atención al cliente y redes sociales</li>
+                <li><b>Alvaro</b> – Logística y almacén, (no vende cocaína...)</li>
+                <li><b>Alicia</b> – Diseño y marketing, Dibujante oficial de la Página</li>
+                <li><b>Antonio</b> – Hace Bulto (Mascota oficial de la Empresa) </li>
+            </ul>
+        </div>
+        <div class="valores">
+            <h3>Nuestros valores</h3>
+            <ul>
+                <li>❤️ Pasión por el anime y la cultura japonesa</li>
+                <li>🚚 Envíos rápidos y seguros</li>
+                <li>🤝 Atención personalizada</li>
+                <li>🌱 Compromiso con la sostenibilidad</li>
+            </ul>
+        </div>
+        <div class="historia">
+            <h3>Nuestra historia</h3>
+            <p>
+                Tienda Anime nació en 2024 como un pequeño proyecto entre amigos. Hoy somos una comunidad de fans que crece cada día, 
+                compartiendo novedades, eventos y productos exclusivos. ¡Gracias por confiar en nosotros!
+            </p>
+        </div>
+        <div class="contacto-directo">
+            <h3>¿Quieres saber más?</h3>
+            <p>
+                Escríbenos a <b>soporte@tiendaanime.com</b> o visita nuestra sección de 
+                <a th:href="@{/contacto}">contacto</a>.
+            </p>
+        </div>
+        <a th:href="@{/}" class="volver-inicio">&larr; Volver al inicio</a>
+    </div>
+</body>
+</html>

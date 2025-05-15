@@ -1,44 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Panel de Administración</title>
+    <title>Panel de administración</title>
     <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <meta charset="UTF-8">
 </head>
 <body>
-    <div class="container">
-        <h2>Panel de Administración</h2>
-        <a th:href="@{/admin/producto/nuevo}" style="margin-bottom:20px;display:inline-block;">Añadir producto</a>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Imagen</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="producto : ${productos}">
-                    <td th:text="${producto.id_producto}"></td>
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.precio} + ' €'"></td>
-                    <td th:text="${producto.stock}"></td>
-                    <td>
-                        <img th:src="@{'/img/' + ${producto.imagenUrl}}" th:alt="${producto.nombre}" style="width:60px;height:60px;object-fit:contain;">
-                    </td>
-                    <td>
-                        <a th:href="@{'/admin/producto/editar/' + ${producto.id_producto}}">Editar</a>
-                        <a th:href="@{'/admin/producto/borrar/' + ${producto.id_producto}}"
-                           onclick="return confirm('¿Seguro que quieres borrar este producto?');"
-                           style="color:red;margin-left:10px;">Borrar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div style="margin-top:30px;">
-            <a th:href="@{/}">&larr; Volver a la tienda</a>
+    <div class="admin-panel">
+        <h2>Panel de administración</h2>
+        <div class="admin-secciones">
+            <a th:href="@{/admin/productos}" class="admin-card">
+                <h3>Gestionar productos</h3>
+                <p>Alta, baja y modificación de productos de la tienda.</p>
+            </a>
+            <a th:href="@{/admin/pedidos}" class="admin-card">
+                <h3>Gestionar pedidos</h3>
+                <p>Consulta y gestión de pedidos realizados por los clientes.</p>
+            </a>
         </div>
     </div>
 </body>

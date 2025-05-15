@@ -6,8 +6,8 @@ body {
     min-height: 100vh;
 }
 
-.container {
-    max-width: 420px;
+.contact-container {
+    max-width: 500px;
     margin: 48px auto;
     background: rgba(255,255,255,0.97);
     border-radius: 18px;
@@ -24,44 +24,21 @@ h2 {
     letter-spacing: 1px;
 }
 
-.perfil-info {
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+label {
+    color: #232946;
+    font-weight: 600;
     text-align: left;
-    margin-bottom: 24px;
-    font-size: 1.08em;
+    margin-bottom: 2px;
 }
 
-.perfil-info label {
-    font-weight: 600;
-    color: #404a7f;
-}
-
-.perfil-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 18px;
-}
-
-.perfil-actions a, .container a {
-    color: #0070f3;
-    text-decoration: underline;
-    font-weight: 600;
-    transition: color 0.2s;
-}
-
-.perfil-actions a:hover, .container a:hover {
-    color: #e6683c;
-    text-decoration: none;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], textarea {
     width: 100%;
     padding: 10px 12px;
     border: 1.5px solid #bfc9d1;
@@ -70,15 +47,16 @@ input[type="text"], input[type="email"], input[type="password"] {
     background: #f7f8fa;
     transition: border 0.2s, box-shadow 0.2s;
     box-shadow: 0 2px 8px #eebbc344;
+    resize: vertical;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     border: 1.5px solid #eebbc3;
     outline: none;
     box-shadow: 0 2px 16px #eebbc388;
 }
 
-button[type="submit"] {
+.boton-enviar {
     width: 100%;
     padding: 12px 0;
     background: linear-gradient(90deg, #232946 0%, #404a7f 100%);
@@ -93,26 +71,42 @@ button[type="submit"] {
     box-shadow: 0 2px 8px #23294622;
     letter-spacing: 0.5px;
 }
-button[type="submit"]:hover {
+.boton-enviar:hover {
     background: #eebbc3;
     color: #232946;
     box-shadow: 0 4px 16px #eebbc388;
     transform: scale(1.03);
 }
 
-.error {
-    color: #e6683c;
-    font-weight: 600;
-    margin-bottom: 10px;
+.info-extra {
+    margin-top: 18px;
+    font-size: 1em;
+    color: #404a7f;
+    text-align: left;
 }
-.success {
-    color: #2ecc40;
+
+.info-extra a {
+    color: #0070f3;
+    text-decoration: underline;
     font-weight: 600;
-    margin-bottom: 10px;
+}
+
+.volver-inicio {
+    display: block;
+    margin-top: 24px;
+    color: #404a7f;
+    text-decoration: underline;
+    font-size: 1.08em;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.volver-inicio:hover {
+    color: #e6683c;
+    text-decoration: none;
 }
 
 @media (max-width: 600px) {
-    .container {
+    .contact-container {
         padding: 12px 2vw;
     }
     h2 {

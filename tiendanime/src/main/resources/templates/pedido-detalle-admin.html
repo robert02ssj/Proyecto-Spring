@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle del pedido (Admin)</title>
+    <link rel="stylesheet" th:href="@{/css/pedido-detalle-admin.css}">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <h2>Detalle del pedido #<span th:text="${pedido.id_pedido}">1</span> (Admin)</h2>
+        <div class="info-pedido">
+            <p><b>Cliente:</b> <span th:text="${pedido.usuario.nombre}">Cliente</span></p>
+            <p><b>Email:</b> <span th:text="${pedido.usuario.email}">email@cliente.com</span></p>
+            <p><b>Fecha:</b> <span th:text="${#temporals.format(pedido.fechaCreacion, 'dd/MM/yyyy HH:mm')}">01/01/2024</span></p>
+            <p>
+                <b>Estado:</b>
+                <form th:action="@{'/admin/pedidos/cambiar-estado/' + ${pedido.id_pedido}}" method="post" style="display:inline;">
+                    <select name="estado" class="select-estado">
+                        <option th:value="'Pendiente'" th:selected="${pedido.estado == 'Pendiente'}">Pendiente</option>
+                        <option th:value="'Enviado'" th:selected="${pedido.estado == 'Enviado'}">Enviado</option>
+                        <option th:value="'Cancelado'" th:selected="${pedido.estado == 'Cancelado'}">Cancelado</option>
+                    </select>
+                    <button type="submit" class="boton-accion editar">Cambiar</button>
+                </form>
+            </p>
+            <p><b>Total:</b> <span th:text="${pedido.total} + ' €'">0.00 €</span></p>
+        </div>
+        <hr>
+        <h3>Productos del pedido</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="detalle : ${detalles}">
+                    <td>
+                        <img th:src="@{'/img/' + ${detalle.producto.imagenUrl}}" th:alt="${detalle.producto.nombre}" style="width:60px; height:60px; object-fit:contain; border-radius:6px; background:#fff;">
+                    </td>
+                    <td th:text="${detalle.producto.nombre}">Nombre</td>
+                    <td th:text="${detalle.producto.precio} + ' €'">0.00 €</td>
+                    <td th:text="${detalle.cantidad}">1</td>
+                    <td th:text="${#numbers.formatDecimal(detalle.producto.precio * detalle.cantidad, 1, 'NONE', 2, 'POINT')} + ' €'">0.00 €</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align:center; margin-top:30px;">
+            <a th:href="@{/admin/pedidos}" class="volver-panel">&larr; Volver a la gestión de pedidos</a>
+        </div>
+    </div>
+</body>
+</html>

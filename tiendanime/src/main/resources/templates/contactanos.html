@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contáctanos - Tienda Anime</title>
+    <link rel="stylesheet" th:href="@{/css/contactanos.css}">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="contact-container">
+        <h2>Contáctanos</h2>
+        <p>¿Tienes alguna duda, sugerencia o problema? ¡Rellena el formulario y te responderemos lo antes posible!</p>
+        <form th:action="@{/contacto/enviar}" method="post" class="contact-form">
+            <label>Nombre:</label>
+            <input type="text" name="nombre" required>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            <label>Mensaje:</label>
+            <textarea name="mensaje" rows="5" required></textarea>
+            <button type="submit" class="boton-enviar">Enviar mensaje</button>
+        </form>
+        <div class="info-extra">
+            <p><b>Email:</b> soporte@tiendaanime.com</p>
+            <p><b>Teléfono:</b> +34 600 123 456</p>
+            <p><b>Instagram:</b> <a href="https://instagram.com/" target="_blank">@tiendaanime</a></p>
+        </div>
+        <a th:href="@{/}" class="volver-inicio">&larr; Volver al inicio</a>
+    </div>
+</body>
+</html>

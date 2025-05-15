@@ -1,105 +1,75 @@
 body {
-    background: #f4f6fb;
     font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #e0e7ff 0%, #eebbc3 100%);
     margin: 0;
     padding: 0;
+    min-height: 100vh;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px #23294622;
-    padding: 32px 40px;
+.admin-panel {
+    max-width: 600px;
+    margin: 60px auto;
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px #23294622;
+    padding: 38px 32px 32px 32px;
+    text-align: center;
 }
 
 h2 {
     color: #232946;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
     font-size: 2em;
+    font-weight: 900;
     letter-spacing: 1px;
 }
 
-a {
-    color: #232946;
+.admin-secciones {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.admin-card {
+    flex: 1 1 220px;
+    background: linear-gradient(120deg, #e0e7ff 0%, #eebbc3 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px #23294622;
+    padding: 28px 18px;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-a:hover {
-    color: #eebbc3;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px #eebbc344;
-}
-
-th, td {
-    padding: 14px 10px;
-    text-align: center;
-}
-
-th {
-    background: #232946;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.05em;
-}
-
-tr:nth-child(even) {
-    background: #f7f7fa;
-}
-
-tr:hover {
-    background: #eebbc3;
     color: #232946;
+    transition: box-shadow 0.2s, transform 0.18s, background 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.admin-card:hover {
+    box-shadow: 0 8px 32px #eebbc388;
+    background: #eebbc3;
+    transform: translateY(-4px) scale(1.03);
 }
 
-img {
-    border-radius: 6px;
-    background: #fff;
-    box-shadow: 0 1px 4px #23294622;
+.admin-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.3em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
-button, .btn {
-    background: #232946;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
+.admin-card p {
+    margin: 0;
     font-size: 1em;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin: 0 4px;
-}
-button:hover, .btn:hover {
-    background: #eebbc3;
-    color: #232946;
-}
-
-a[style*="color:red"] {
-    color: #d7263d !important;
-    font-weight: bold;
-}
-
-a[style*="color:red"]:hover {
-    color: #232946 !important;
-    background: #eebbc3;
-    border-radius: 4px;
+    color: #404a7f;
 }
 
 @media (max-width: 700px) {
-    .container {
-        padding: 10px;
+    .admin-panel {
+        padding: 18px 2vw 14px 2vw;
+        border-radius: 10px;
     }
-    table, th, td {
-        font-size: 0.95em;
+    .admin-secciones {
+        flex-direction: column;
+        gap: 18px;
     }
 }

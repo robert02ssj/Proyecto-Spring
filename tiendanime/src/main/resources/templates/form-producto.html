@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${producto.id_producto == null ? 'Nuevo producto' : 'Editar producto'}">Producto</title>
-<link rel="stylesheet" th:href="@{/css/form-producto.css}">
+    <link rel="stylesheet" th:href="@{/css/form-producto.css}">
+    <meta charset="UTF-8">
 </head>
 <body>
     <div class="container">
@@ -24,10 +25,10 @@
             <label>Imagen URL:<br>
                 <input th:field="*{imagenUrl}" required>
             </label><br><br>
-            <button type="submit">Guardar</button>
+            <button type="submit" class="boton-guardar">Guardar</button>
         </form>
         <div style="margin-top:20px;">
-            <a th:href="@{/admin}">&larr; Volver al panel de administración</a>
+            <a th:href="@{/admin/productos}" class="volver-panel">&larr; Volver a la gestión de productos</a>
         </div>
     </div>
 </body>

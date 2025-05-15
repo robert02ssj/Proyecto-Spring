@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar pedidos</title>
+    <link rel="stylesheet" th:href="@{/css/gestionar_pedidos.css}">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="admin-container">
+        <h2>Gestión de pedidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pedido : ${pedidos}">
+                    <td th:text="${pedido.id_pedido}">1</td>
+                    <td th:text="${pedido.usuario.nombre}">Cliente</td>
+                    <td th:text="${#temporals.format(pedido.fechaCreacion, 'dd/MM/yyyy HH:mm')}">01/01/2024</td>
+                    <td>
+                        <span th:text="${pedido.estado}"
+                              th:classappend="'estado ' + (${pedido.estado} == 'Enviado' ? 'enviado' : (${pedido.estado} == 'Pendiente' ? 'pendiente' : (${pedido.estado} == 'Cancelado' ? 'cancelado' : '')))">
+                            Pendiente
+                        </span>
+                    </td>
+                    <td th:text="${pedido.total} + ' €'">0.00 €</td>
+                    <td>
+                        <a th:href="@{'/admin/pedidos/' + ${pedido.id_pedido}}" class="boton-accion ver">Ver</a>
+                        <form th:action="@{'/admin/pedidos/eliminar/' + ${pedido.id_pedido}}" method="post" style="display:inline;">
+                            <button type="submit" class="boton-accion eliminar">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/admin}" class="volver-panel">&larr; Volver al panel</a>
+    </div>
+</body>
+</html>
