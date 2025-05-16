@@ -11,6 +11,9 @@
 
 
 <body>
+    <div id="FreeShippingBanner"
+        style="background: linear-gradient(90deg, #232946 0%, #404a7f 100%);color: #ffffff;text-align: center;font-family: 'proxima-nova', Arial, sans-serif!important;font-size: 10px;font-weight: 800!important;letter-spacing: .055em;background-color:linear-gradient(90deg, #232946 0%, #404a7f 100%);line-height: 30px;direction:ltr;"
+        data-gem-ignore="">Envío gratis a España en todos los pedidos de más de €50</div>
     <!-- Menú superior -->
     <div class="navbar">
         <div class="logo">
@@ -32,7 +35,7 @@
             </span>
             <span th:if="${nombreUsuario == null}">
                 <a th:href="@{/login}" style="color:#fff;">Iniciar Sesión</a>
-                
+
             </span>
             <a th:href="@{/carrito}" style="color:#fff;">🛒 Carrito</a>
         </div>

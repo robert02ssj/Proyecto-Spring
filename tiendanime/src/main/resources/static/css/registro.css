@@ -6,19 +6,34 @@ html, body {
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(120deg, #232946 0%, #eebbc3 100%);
     min-height: 100vh;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    /* Fondo animado */
+    background: linear-gradient(120deg, #232946, #eebbc3, #b8c1ec, #232946);
+    background-size: 300% 300%;
+    animation: gradientBG 8s ease-in-out infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .form-container {
-    width: 350px;
+    width: 370px;
     margin: 60px auto;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.88);
     padding: 38px 38px 28px 38px;
     border-radius: 18px;
     box-shadow: 0 8px 32px #23294633;
