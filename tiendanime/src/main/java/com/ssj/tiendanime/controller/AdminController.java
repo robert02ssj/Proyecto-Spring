@@ -52,12 +52,12 @@ public class AdminController {
     @PostMapping("/admin/producto/guardar")
     public String guardarProducto(@ModelAttribute Producto producto) {
         productoService.guardar(producto);
-        return "redirect:/admin";
+        return "redirect:/admin/productos";
     }
 
     @GetMapping("/admin/producto/borrar/{id}")
     public String borrarProducto(@PathVariable Integer id) {
         productoService.borrar(id);
-        return "redirect:/admin";
+        return "redirect:/admin/productos";
     }
 }

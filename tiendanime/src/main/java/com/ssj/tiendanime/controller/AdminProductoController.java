@@ -1,6 +1,8 @@
 package com.ssj.tiendanime.controller;
 
+import com.ssj.tiendanime.model.Categoria;
 import com.ssj.tiendanime.model.Producto;
+import com.ssj.tiendanime.repository.CategoriaRepository;
 import com.ssj.tiendanime.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ public class AdminProductoController {
 
     @Autowired
     private ProductoService productoService;
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     // Listar todos los productos
     @GetMapping
@@ -25,6 +29,7 @@ public class AdminProductoController {
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevo(Model model) {
         model.addAttribute("producto", new Producto());
+        model.addAttribute("categorias", categoriaRepository.findAll());
         return "form-producto";
     }
 
@@ -33,12 +38,16 @@ public class AdminProductoController {
     public String mostrarFormularioEditar(@PathVariable("id") Integer id, Model model) {
         Producto producto = productoService.obtenerPorId(id);
         model.addAttribute("producto", producto);
+        model.addAttribute("categorias", categoriaRepository.findAll());
         return "form-producto";
     }
 
     // Guardar o actualizar producto
     @PostMapping("/guardar")
     public String guardarProducto(@ModelAttribute Producto producto) {
+        Categoria categoria = categoriaRepository.findById(producto.getCategoria().getId_categoria())
+                .orElseThrow(() -> new IllegalArgumentException("Categoría no válida"));
+        producto.setCategoria(categoria);
         productoService.guardar(producto);
         return "redirect:/admin/productos";
     }
@@ -49,4 +58,6 @@ public class AdminProductoController {
         productoService.borrar(id);
         return "redirect:/admin/productos";
     }
+
+    
 }

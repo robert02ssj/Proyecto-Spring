@@ -4,18 +4,35 @@
     <title>Error</title>
     <link rel="stylesheet" th:href="@{/css/error.css}">
 </head>
+
 <body>
     <div class="container">
         <h1>¡Vaya!</h1>
         <h2>Ha ocurrido un error</h2>
-        <div class="tenor-gif-embed" data-postid="12805916815008299407" data-share-method="host" data-aspect-ratio="1" data-width="50%"><a href="https://tenor.com/view/oia-uia-oia-cat-uia-cat-catcultclassics-gif-12805916815008299407">Oia Uia Sticker</a>from <a href="https://tenor.com/search/oia-stickers">Oia Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        <div class="tenor-gif-embed" data-postid="12805916815008299407" data-share-method="host" data-aspect-ratio="1" data-width="50%"><a href="https://tenor.com/view/oia-uia-oia-cat-uia-cat-catcultclassics-gif-12805916815008299407">Oia Uia Sticker</a>from <a href="https://tenor.com/search/oia-stickers">Oia Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>       
         <p th:text="${mensaje != null ? mensaje : 'Lo sentimos, no se pudo encontrar la página o se ha producido un error inesperado.'}">
             Lo sentimos, no se pudo encontrar la página o se ha producido un error inesperado.
         </p>
+        <a href="https://doompdf.pages.dev/doom.pdf">pero te ofrecemos esta solución.....</a>
         <div style="text-align:center; margin-top:30px;">
             <a th:href="@{/}" class="btn-volver">Volver a la tienda</a>
         </div>
     </div>
-    
 </body>
+<audio id="musica-fondo" src="/audio/gato.mp3" loop style="display:none;"></audio>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    var audio = document.getElementById('musica-fondo');
+    // Espera a que el audio esté listo para poder cambiar el tiempo
+    audio.addEventListener('loadedmetadata', function() {
+        if (audio.duration > 60) {
+            audio.currentTime = 153;
+        }
+        // Intenta reproducir (algunos navegadores pueden bloquearlo)
+        audio.play().catch(function(){});
+    });
+    audio.load();
+});
+</script>
+    
 </html>

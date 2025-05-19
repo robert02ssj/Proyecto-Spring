@@ -316,12 +316,14 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 12px;
+    
 }
 
 .card {
     display: flex;
-    height: 40px;
-    width: 160px;
+    height: 45px;
+    width: 250px;
+    margin: 20px 20px;
 }
 
 .card svg {

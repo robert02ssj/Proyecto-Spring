@@ -67,6 +67,19 @@ public class CarritoService {
         carrito.setEstado("pendiente");
         carrito.setFechaCreacion(LocalDateTime.now()); // <-- Añade esta línea
 
+        List<DetallePedido> detalles = detallePedidoRepository.findByPedido(carrito);
+    for (DetallePedido detalle : detalles) {
+        Producto producto = detalle.getProducto();
+        int cantidad = detalle.getCantidad();
+        if (producto.getStock() >= cantidad) {
+            producto.setStock(producto.getStock() - cantidad);
+            productoRepository.save(producto);
+        } else {
+            // Si no hay suficiente stock, puedes lanzar una excepción o manejarlo como prefieras
+            throw new IllegalStateException("No hay suficiente stock para el producto: " + producto.getNombre());
+        }
+    }
+
         // Calcula el total
         BigDecimal total = detallePedidoRepository.findByPedido(carrito).stream()
     .filter(d -> d.getPrecioUnitario() != null && d.getCantidad() != null)

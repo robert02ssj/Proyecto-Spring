@@ -17,7 +17,7 @@
                     <th>ID</th>
                     <th>Imagen</th>
                     <th>Nombre</th>
-                    <th>Descripción</th>
+                    <th>Categoría</th>
                     <th>Precio</th>
                     <th>Stock</th>
                     <th>Acciones</th>
@@ -30,7 +30,7 @@
                         <img th:src="@{'/img/' + ${producto.imagenUrl}}" th:alt="${producto.nombre}" style="width:60px; height:60px; object-fit:contain; border-radius:6px; background:#fff;">
                     </td>
                     <td th:text="${producto.nombre}">Nombre</td>
-                    <td th:text="${producto.descripcion}">Descripción</td>
+                    <td th:text="${producto.categoria != null ? producto.categoria.nombreCategoria : 'Sin categoría'}">Categoría</td>
                     <td th:text="${producto.precio} + ' €'">0.00 €</td>
                     <td th:text="${producto.stock}">0</td>
                     <td>
