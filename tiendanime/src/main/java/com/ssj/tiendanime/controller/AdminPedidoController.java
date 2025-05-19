@@ -24,7 +24,7 @@ public class AdminPedidoController {
     // Listar todos los pedidos
     @GetMapping
     public String listarPedidos(Model model) {
-        model.addAttribute("pedidos", pedidoRepository.findAll());
+        model.addAttribute("pedidos", pedidoRepository.findByEstadoNot("carrito"));
         return "gestionar_pedidos";
     }
 
