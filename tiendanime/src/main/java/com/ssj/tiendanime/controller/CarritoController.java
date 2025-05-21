@@ -40,6 +40,11 @@ public class CarritoController {
         return "carrito";
     }
 
+    @GetMapping("/pago")
+public String mostrarFormularioPago() {
+    return "pago";
+}
+
     @PostMapping("/carrito/agregar")
     public String agregarAlCarrito(@RequestParam("id_producto") Integer idProducto,
                                    @RequestParam("cantidad") Integer cantidad,
@@ -60,9 +65,19 @@ public class CarritoController {
 
     @PostMapping("/pedido/confirmar")
     public String confirmarPedido(Principal principal) {
-        Usuario usuario = usuarioRepository.findByEmail(principal.getName());
-        Pedido carrito = carritoService.obtenerOCrearCarrito(usuario);
-        carritoService.confirmarCarrito(carrito);
-        return "redirect:/";
+        return "redirect:/pago";
     }
+
+    @PostMapping("/pago/procesar")
+public String procesarPago(@RequestParam String nombre,
+                           @RequestParam String tarjeta,
+                           @RequestParam String caducidad,
+                           @RequestParam String cvc,
+                           Principal principal) {
+    Usuario usuario = usuarioRepository.findByEmail(principal.getName());
+    Pedido carrito = carritoService.obtenerOCrearCarrito(usuario);
+    // Aquí puedes guardar los datos de pago/envío si quieres
+    carritoService.confirmarCarrito(carrito); // Ahora sí, confirma el pedido
+    return "redirect:/pedidos?exito";
+}
 }

@@ -7,8 +7,9 @@
 </head>
 <body>
     <div class="container">
+        <h2 th:if="${mensaje != null}" th:text="${mensaje}" style="color:green;"></h2>
         <h2 th:text="${producto.id_producto == null ? 'Nuevo producto' : 'Editar producto'}"></h2>
-        <form th:action="@{/admin/producto/guardar}" th:object="${producto}" method="post">
+        <form th:action="@{/admin/producto/guardar}" th:object="${producto}" method="post" enctype="multipart/form-data">
             <input type="hidden" th:field="*{id_producto}">
             <label>Nombre:<br>
                 <input th:field="*{nombre}" required>
@@ -26,8 +27,8 @@
             <label>Stock:<br>
                 <input type="number" th:field="*{stock}" required>
             </label><br><br>
-            <label>Imagen URL:<br>
-                <input th:field="*{imagenUrl}" required>
+            <label>Imagen:<br>
+        <input type="file" name="imagenArchivo" accept="image/*">
             </label><br><br>
             <button type="submit" class="boton-guardar">Guardar</button>
         </form>

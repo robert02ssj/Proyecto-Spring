@@ -1,6 +1,4 @@
 package com.ssj.tiendanime.controller;
-
-import com.ssj.tiendanime.model.Categoria;
 import com.ssj.tiendanime.model.Producto;
 import com.ssj.tiendanime.repository.CategoriaRepository;
 import com.ssj.tiendanime.service.ProductoService;
@@ -42,15 +40,7 @@ public class AdminProductoController {
         return "form-producto";
     }
 
-    // Guardar o actualizar producto
-    @PostMapping("/guardar")
-    public String guardarProducto(@ModelAttribute Producto producto) {
-        Categoria categoria = categoriaRepository.findById(producto.getCategoria().getId_categoria())
-                .orElseThrow(() -> new IllegalArgumentException("Categoría no válida"));
-        producto.setCategoria(categoria);
-        productoService.guardar(producto);
-        return "redirect:/admin/productos";
-    }
+    // Guardar 
 
     // Eliminar producto
     @PostMapping("/eliminar/{id}")

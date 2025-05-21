@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AsistenciaController {
 
+    
     @GetMapping("/asistencia")
     public String mostrarAsistencia() {
         return "asistencia";

@@ -29,7 +29,7 @@ public class SecurityConfig {
         http
             .authenticationProvider(authProvider)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/registro", "/css/**", "/js/**", "/img/**", "/buscar", "/producto/**", "/contacto",  "/asistencia",  "/sobre-nosotros", "/suscribirse", "/error").permitAll()
+                .requestMatchers("/", "/login", "/registro", "/css/**", "/js/**", "/img/**","/audio/**",  "/buscar", "/producto/**", "/contacto",  "/asistencia",  "/sobre-nosotros", "/suscribirse", "/error").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
