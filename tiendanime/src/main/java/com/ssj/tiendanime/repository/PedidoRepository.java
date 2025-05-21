@@ -36,5 +36,6 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
      * @return Una lista de Pedidos que no están en el estado especificado.
      */
     List<Pedido> findByEstadoNot(String estado);
+    List<Pedido> findByUsuario(Usuario usuario);
 
 }
