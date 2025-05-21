@@ -10,6 +10,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controlador para el registro de nuevos usuarios.
+ * Permite mostrar el formulario de registro y procesar el alta de usuarios.
+ */
 @Controller
 public class RegistroController {
 
@@ -19,11 +23,24 @@ public class RegistroController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Muestra el formulario de registro de usuario.
+     * @return Vista del formulario de registro.
+     */
     @GetMapping("/registro")
     public String mostrarFormularioRegistro() {
         return "registro";
     }
 
+    /**
+     * Procesa el registro de un nuevo usuario.
+     * Si el email ya existe, redirige con error.
+     * Si el registro es exitoso, redirige al login con mensaje de éxito.
+     * @param nombre Nombre del usuario.
+     * @param email Email del usuario.
+     * @param contraseña Contraseña del usuario.
+     * @return Redirección según el resultado del registro.
+     */
     @PostMapping("/registro")
     public String registrarUsuario(@RequestParam String nombre,
                                    @RequestParam String email,

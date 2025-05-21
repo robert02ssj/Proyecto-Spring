@@ -10,19 +10,33 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+/**
+ * Controlador para la gestión de la cuenta de usuario.
+ * Permite ver y editar el perfil, así como cambiar la contraseña.
+ */
 @Controller
 public class CuentaController {
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Constructor para inyectar las dependencias necesarias.
+     * @param usuarioRepository Repositorio de usuarios.
+     * @param passwordEncoder Codificador de contraseñas.
+     */
     @Autowired
     public CuentaController(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    // Vista principal de cuenta
+    /**
+     * Muestra la vista principal de la cuenta del usuario autenticado.
+     * @param model Modelo para la vista.
+     * @param principal Usuario autenticado.
+     * @return Vista de la cuenta.
+     */
     @GetMapping("/cuenta")
     public String verCuenta(Model model, Principal principal) {
         Usuario usuario = usuarioRepository.findByEmail(principal.getName());
@@ -30,7 +44,12 @@ public class CuentaController {
         return "cuenta";
     }
 
-    // Mostrar formulario de edición de perfil
+    /**
+     * Muestra el formulario para editar el perfil del usuario.
+     * @param model Modelo para la vista.
+     * @param principal Usuario autenticado.
+     * @return Vista del formulario de edición de perfil.
+     */
     @GetMapping("/cuenta/editar")
     public String mostrarEditarPerfil(Model model, Principal principal) {
         Usuario usuario = usuarioRepository.findByEmail(principal.getName());
@@ -38,7 +57,13 @@ public class CuentaController {
         return "editar-perfil";
     }
 
-    // Guardar cambios de perfil (nombre y email)
+    /**
+     * Guarda los cambios realizados en el perfil del usuario (nombre y email).
+     * @param usuarioEditado Objeto usuario con los datos editados.
+     * @param principal Usuario autenticado.
+     * @param model Modelo para la vista.
+     * @return Redirección al login tras editar el perfil.
+     */
     @PostMapping("/cuenta/editar")
     public String guardarEditarPerfil(@ModelAttribute Usuario usuarioEditado, Principal principal, Model model) {
         Usuario usuario = usuarioRepository.findByEmail(principal.getName());
@@ -51,13 +76,24 @@ public class CuentaController {
         return "login";
     }
 
-    // Mostrar formulario para cambiar contraseña
+    /**
+     * Muestra el formulario para cambiar la contraseña del usuario.
+     * @return Vista del formulario para cambiar contraseña.
+     */
     @GetMapping("/cuenta/cambiar-password")
     public String mostrarCambiarPassword() {
         return "cambiar-password";
     }
 
-    // Cambiar contraseña
+    /**
+     * Cambia la contraseña del usuario autenticado.
+     * @param principal Usuario autenticado.
+     * @param actual Contraseña actual.
+     * @param nueva Nueva contraseña.
+     * @param repetir Repetición de la nueva contraseña.
+     * @param model Modelo para la vista.
+     * @return Redirección al login si el cambio es exitoso, o vuelve al formulario con error.
+     */
     @PostMapping("/cuenta/cambiar-password")
     public String cambiarPassword(Principal principal,
                                   @RequestParam String actual,
